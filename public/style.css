@@ -1,0 +1,49 @@
+#content {
+    width: 1000px;
+    height: 100%;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Open Sans';
+}
+
+.auth {
+    margin-top: 20%;
+}
+
+#content input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 500px;
+    padding: 5px;
+}
+
+#content button {
+    width: 100px;
+    border-radius: 90px;
+    border: none;
+    padding: 10px 20px;
+}
+
+#content button:hover {
+    cursor: pointer;
+    background-color: rgb(235, 221, 101);
+}
+
+#msges {
+    margin-top: 50px;
+    list-style-type: none;
+}
+
+#msges li {
+    padding: 10px;
+    text-align: left;
+    width: 300px;
+}
+
+li span {
+    font-weight: 600;
+}
+
+.green {
+    color: green;
+}

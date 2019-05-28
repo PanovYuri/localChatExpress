@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="content">
+        <h1>CHAT FOR ME!!</h1>
+        <div class="auth">
+            <h1>Введите своё имя</h1>
+            <input type="text" id="name">
+            <button id="auth">SEND</button>
+        </div>
+        <!-- <label>
+            Message: <br>
+            <input type="text" id="msg">
+        </label> <br>
+        <button id="sender">send</button>
+        <ul id="msges">
+        </ul> -->
+    </div>
+    <script src="jquery-3.4.1.min.js"></script>
+    </script>
+    <script>
+        let messages = Array()
+        let name = ""
+
+        function updateMessage(list) {
+            messages = list
+            let list_msg = "";
+            messages.forEach(s => list_msg += `<li><span ${s.name === name ? 'class="green"': ''}>${s.name}:</span> <i>${s.msg}</i></li>`)
+            $("#msges").html(list_msg)
+        }
+
+        $("#name").keydown((e) => {
+            if(e.keyCode === 13) {
+                sendName()
+            }
+        })
+
+        function sendName() {
+            name = $("#name").val();
+            $.ajax({
+                url: "/auth",
+                type: "GET",
+                dataType: 'json',
+                data: {names: name},
+                success: (data) => {
+                    console.log(data);
+                    let msg_content = `
+                    <h1>CHAT FOR ME!!</h1>
+                    <label>
+                        Message: <br>
+                        <input type="text" id="msg">
+                    </label> <br>
+                    <button id="sender">send</button>
+                    <ul id="msges">
+                    </ul>
+                    `;
+                    $("#content").html(msg_content);
+                    $("#sender").click(sendMsg)
+                    updateMessage(data);
+                    $("#msg").keydown((e) => {
+                        if(e.keyCode === 13) {
+                            sendMsg()
+                        }
+                    })
+                    setTimeout(setMsgTimeOut, 2000);
+                }
+            })
+        }
+
+        $("#auth").click(sendName)
+
+        function sendMsg() {
+            let msgFormat = Object()
+            msgFormat.name = name
+            msgFormat.msg = $("#msg").val()
+
+            //Send message
+            $.ajax({
+                url: "/rand",
+                type: "GET",
+                dataType: 'json',
+                data: msgFormat,
+                success: (data) => {
+                    console.log(data);
+                    updateMessage(data);
+                    $("#msg").val("")
+                    $("#msg").focus()
+                },
+                error: () => {
+                    console.log("Error");
+                }
+            })
+        }
+
+        function setMsgTimeOut() {
+            $.ajax({
+                url: '/update',
+                dataType: 'json',
+                success: (data) => {
+                    updateMessage(data);
+                }
+            });
+            setTimeout(setMsgTimeOut, 3000);
+        }
+    </script>
+</body>
+</html>

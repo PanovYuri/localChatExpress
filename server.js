@@ -5,22 +5,20 @@ const messages = Array()
 const colorName = Array()
 
 app.use("/", express.static('public'))
-app.get("/rand", (req, res)=>{
-    messages.unshift({ 
-        name: req.query.name, 
-        msg: req.query.msg 
+app.get("/rand", (req, res) => {
+    messages.unshift({
+        name: req.query.name,
+        msg: req.query.msg
     })
-    console.log("Updated messages list:");
-    console.log(messages)
     res.send(JSON.stringify(messages))
 })
 
 app.get("/auth", (req, res) => {
-    console.log(req.query);
-    messages.unshift({ 
-        name: req.query.names, 
-        msg: "---connected---" 
+    messages.unshift({
+        name: req.query.names,
+        msg: "---connected---"
     })
+    console.log(`User connected ${req.query.names}`);
     res.send(messages)
 })
 

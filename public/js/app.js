@@ -29,12 +29,12 @@ function sendName() {
         },
         success: (data) => {
             let msg_content = `
-                <h1>CHAT FOR ME!!</h1>
-                <label>
-                    Message: <br>
-                    <input type="text" id="msg">
-                </label> <br>
-                <button id="sender">send</button>
+                <div class="inputMsg">
+                    <div class="inputMsg_content">
+                        <input type="text" id="msg">
+                        <button id="sender">send</button>
+                    </div>
+                </div>
                 <ul id="msges">
                 </ul>
             `;

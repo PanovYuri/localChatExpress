@@ -99,7 +99,7 @@ li span {
 .inputMsg {
     width: 100%;
     height: 50px;
-    margin-top: 50px;
+    margin-top: 10px;
 }
 
 .inputMsg_content {
@@ -110,4 +110,9 @@ li span {
     width: 150px;
     background-color: rgb(113, 113, 238);
     color: white;
+}
+
+.authName {
+    font-size: 32px;
+    margin-top: 30px;
 }

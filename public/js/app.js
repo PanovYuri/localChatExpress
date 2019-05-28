@@ -29,6 +29,7 @@ function sendName() {
         },
         success: (data) => {
             let msg_content = `
+                <p class="authName">${name}</p>
                 <div class="inputMsg">
                     <div class="inputMsg_content">
                         <input type="text" id="msg">

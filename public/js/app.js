@@ -54,7 +54,7 @@ function sendName() {
             })
 
             //Запрос на обновление каждые 2 секунды
-            setTimeout(setMsgTimeOut, 2000);
+            setTimeout(setMsgTimeOut, 1000);
         }
     })
 }
@@ -68,7 +68,7 @@ function setMsgTimeOut() {
             updateMessage(data);
         }
     });
-    setTimeout(setMsgTimeOut, 3000);
+    setTimeout(setMsgTimeOut, 1000);
 }
 
 $("#auth").click(sendName)

@@ -20,6 +20,10 @@ $("#name").keydown((e) => {
 //Авторизация
 function sendName() {
     name = $("#name").val();
+    if (name.trim() == '') {
+        alert("Пустая строка!");
+        return;
+    }
     $.ajax({
         url: "/auth",
         type: "GET",
@@ -78,6 +82,11 @@ function sendMsg() {
     let msgFormat = {
         'name': name,
         'msg': $("#msg").val()
+    }
+
+    if(msgFormat.msg.trim() == '') {
+        alert("Пустое поле");
+        return;
     }
 
     //Обновить список сообщений после отправки

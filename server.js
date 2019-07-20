@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 
 const messages = Array()
-const colorName = Array()
 
 app.use("/", express.static('public'))
 app.get("/rand", (req, res) => {
